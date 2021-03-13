@@ -1,0 +1,49 @@
+{% extends "template/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" style="width: 50px;">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small><br>
+            <strong class="article-title">{{ object.title }}</strong>
+            <p class="article-content">{{ object.content }}</p>
+
+ <div class="comment">
+        <form action="task_com/" method="POST">
+            {% csrf_token %}
+            <input type="text" name="text" id="text" placeholder="comment here">
+            <input type="submit" value="Add">
+
+        </form>
+     <p>comments!!
+     {% for task in tasks %}
+          <p>{{task}}</p>
+        {% endfor %}
+    </p>
+ </div>
+            {% if object.author == user %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="button" name="post_id" value="{{ post.id }}" onclick=""
+                        class="btn btn-primary btn-sm mt-1 mb-1">Like
+                </button>
+            </form>
+            <p>Likes: {{ object.likes.count }} <a href="{{ object.get_like_url }}"></a></p>
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            </div>
+            {% endif %}
+
+        </div>
+        <script type="text/javascript">
+    var add1 = function() {
+      document.getElementById("output").value = +1;
+ /* document.getElementById("output").value = parseInt(document.getElementById("output").value,10) + 1;*/
+};
+
+        </script>
+    </div>
+</article>
+{% endblock content %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "template/base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+ <div class="comment">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="text" id="text" placeholder="comment here">
+            <input type="submit" value="Add">
+
+        </form>
+     <p>comments!!</p>
+     {% for task in tasks %}
+          <p>{{task}}</p>
+        {% endfor %}
+ </div>
+</body>
+</html>
+{% endblock content%}
+

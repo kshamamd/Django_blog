@@ -1,0 +1,21 @@
+{% extends "template/base.html" %}
+{% block content %}
+     <h2>Your application status is -</h2>
+      <!-- {% for st in status %}
+         post {{ st.new }}
+         status  {{ st.status }}
+         user  {{ st.user }} -->
+       {% if st.status == True %}
+         <td><small class="badge badge-success">Approved!</small></td>
+       {% else %}
+         <td><small class="badge badge-warning">Appointment pending!</small></td>
+       {% endif %}
+       <!--{% endfor %} -->
+         {{ form.remark }}
+         <div class="border-top pt-3">
+             <small class="text-muted">
+                 <a class="ml-2" href="{% url 'logout' %}">Logout</a>
+             </small>
+         </div>
+
+{% endblock content %}
